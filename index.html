@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10120f">
+  <meta name="description" content="ORBIT LAB — 让代码长成想象的形状。基于 Three.js 的交互式数字艺术实验室。">
+  <title>ORBIT LAB — Code, unbound.</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="modulepreload" href="./vendor/three.module.min.js">
+  <link rel="modulepreload" href="./vendor/three.core.min.js">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="header">
+    <a class="brand" href="#" aria-label="ORBIT LAB 首页"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 0 19.7 12.3 32 16 19.7 19.7 16 32 12.3 19.7 0 16 12.3 12.3Z" fill="currentColor"/></svg><span>ORBIT<span class="brand-light">LAB</span><sup>✳</sup></span></a>
+    <nav aria-label="主要导航"><a class="nav-link" href="#experiments">精选实验 <span>03</span></a><a class="nav-link" href="#open-source">关于实验室</a></nav>
+    <a class="github-link" aria-label="访问 ORBIT LAB 的 GitHub 仓库" href="https://github.com/MrDou01/orbit-lab" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .8A11.3 11.3 0 0 0 8.4 22.8c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.62 1.22 3.26.93.1-.73.4-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.58 0-1.23.44-2.23 1.16-3.01-.12-.28-.5-1.43.11-2.97 0 0 .95-.3 3.1 1.16a10.8 10.8 0 0 1 5.64 0c2.15-1.46 3.1-1.16 3.1-1.16.61 1.54.23 2.69.11 2.97.72.78 1.16 1.78 1.16 3.01 0 4.34-2.64 5.3-5.15 5.57.4.35.77 1.03.77 2.08v3.08c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .8Z"/></svg><span>GitHub</span><span class="arrow">↗</span></a>
+  </header>
+  <main id="main">
+    <section class="hero" id="playground" aria-labelledby="hero-title">
+      <div class="hero-topline mono"><span><i class="status-dot"></i> INDEPENDENT CREATIVE LAB</span><span class="hero-edition">EST. 2026 · EXPERIMENT Nº 001</span></div>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="short-line"></span> 写给不设限的想象力</div>
+        <h1 id="hero-title">Code,<br><span>unbound<i>.</i></span></h1>
+        <p class="hero-description">让代码，长成想象的形状。<br><span>探索开源技术与数字艺术的无限交集。</span></p>
+        <a class="button button-lime magnetic" href="#experiments"><span>进入灵感轨道</span><span class="button-icon">↗</span></a>
+        <div class="hero-note mono"><span class="note-bracket">[</span> CURIOSITY IS THE ONLY PREREQUISITE <span class="note-bracket">]</span></div>
+      </div>
+      <div class="sculpture-stage">
+        <div class="stage-grid" aria-hidden="true"></div>
+        <div class="stage-orbit orbit-one" aria-hidden="true"></div><div class="stage-orbit orbit-two" aria-hidden="true"></div>
+        <span class="coordinate coord-top mono" aria-hidden="true">X 032.5<br>Y 108.8<br>Z 064.0</span>
+        <span class="crosshair crosshair-one" aria-hidden="true">+</span><span class="crosshair crosshair-two" aria-hidden="true">+</span>
+        <div class="sculpture-fallback" aria-hidden="true"><div></div><div></div><div></div></div>
+        <canvas id="sculpture" aria-label="实时三维雕塑：拖动或方向键旋转，数字 1 至 3 切换造型，空格暂停" tabindex="0"></canvas>
+        <div class="art-label mono"><span class="status-dot"></span><span id="art-name">CHROME KNOT</span><span class="art-render" id="render-state">INITIALIZING</span></div>
+        <div class="drag-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 9 4-4 4 4M12 5v14m-4-4 4 4 4-4M5 12h14" fill="none" stroke="currentColor" stroke-width="1"/></svg><span id="interaction-hint">拖动旋转 · 滚动探索</span></div>
+      </div>
+      <div class="hero-bottom">
+        <a class="scroll-cue mono" href="#experiments"><span class="scroll-arrow">↓</span><span>SCROLL TO DISCOVER</span></a>
+        <div class="scene-switcher" role="group" aria-label="切换三维雕塑"><button class="scene-choice active" data-mode="0" aria-pressed="true"><span>01</span> CHROME</button><button class="scene-choice" data-mode="1" aria-pressed="false"><span>02</span> ORBIT</button><button class="scene-choice" data-mode="2" aria-pressed="false"><span>03</span> BLOOM</button></div>
+        <div class="scene-actions"><button id="explode" class="icon-button" aria-label="展开雕塑" aria-pressed="false" title="展开雕塑">⤢</button><button id="play-pause" class="icon-button" aria-label="暂停动态效果" aria-pressed="false" title="暂停动态效果"><span class="pause-glyph">Ⅱ</span></button><button id="reset-scene" class="icon-button" aria-label="重置视角" title="重置视角">↺</button></div>
+      </div>
+    </section>
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>OPEN SOURCE</span><i>✳</i><span>OPEN POSSIBILITIES</span><i>✳</i><span>CODE IS A CANVAS</span><i>✳</i><span>OPEN SOURCE</span><i>✳</i><span>OPEN POSSIBILITIES</span><i>✳</i><span>CODE IS A CANVAS</span><i>✳</i></div></div>
+    <section class="experiments section-wrap" id="experiments" aria-labelledby="experiments-title">
+      <div class="section-top reveal"><span class="eyebrow mono">01 — SELECTED EXPERIMENTS</span><span class="section-index mono">CREATIVE COMPUTING / VOL. 01</span></div>
+      <div class="section-heading reveal"><h2 id="experiments-title">美，发生在<span class="serif-word">边界之外。</span></h2><p>一点数学，一点直觉，一点不安分。<br>点击作品，走进代码创造的微观宇宙。</p></div>
+      <div class="gallery">
+        <button class="project project-terrain reveal" data-project="terrain" aria-label="全屏预览：地形的呼吸">
+          <div class="project-image"><canvas data-art="terrain" aria-hidden="true"></canvas><span class="project-tag mono">GENERATIVE LANDSCAPE</span><span class="project-number mono">/ 001</span><div class="project-image-title">The shape<br>of silence<span>↗</span></div><span class="view-project">进入实验 <span>↗</span></span></div>
+          <div class="project-caption"><div><h3>地形的呼吸</h3><p>噪声场 / 生成艺术 / 无尽地貌</p></div><span class="caption-arrow">↗</span></div>
+        </button>
+        <button class="project project-orbit reveal" data-project="orbit" aria-label="全屏预览：引力之外">
+          <div class="project-image"><canvas data-art="orbit" aria-hidden="true"></canvas><span class="project-tag mono">ORBITAL MECHANICS</span><span class="project-number mono">/ 002</span><span class="view-project">进入实验 <span>↗</span></span></div>
+          <div class="project-caption"><div><h3>引力之外</h3><p>轨道运动 / 光线 / 数学之美</p></div><span class="caption-arrow">↗</span></div>
+        </button>
+        <button class="project project-wave reveal" data-project="wave" aria-label="全屏预览：看得见的频率">
+          <div class="project-image"><canvas data-art="wave" aria-hidden="true"></canvas><span class="project-tag mono">FREQUENCY IN FORM</span><span class="project-number mono">/ 003</span><span class="wave-word">AMPLITUDE /</span><span class="view-project">进入实验 <span>↗</span></span></div>
+          <div class="project-caption"><div><h3>看得见的频率</h3><p>正弦叠加 / 线条律动 / 视觉韵律</p></div><span class="caption-arrow">↗</span></div>
+        </button>
+      </div>
+      <div class="gallery-foot mono reveal"><span>THREE STUDIES. INFINITE INTERPRETATIONS.</span><span class="lime">用公式种下风景，用光线描绘时间。 ↗</span></div>
+    </section>
+    <section class="open-source section-wrap" id="open-source" aria-labelledby="source-title">
+      <div class="section-top reveal"><span class="eyebrow mono">02 — BUILT IN THE OPEN</span><span class="section-index mono">NO SECRETS. JUST SOURCE.</span></div>
+      <div class="source-layout">
+        <div class="source-copy reveal"><div class="asterisk" aria-hidden="true">✳</div><h2 id="source-title">灵感没有围墙。<br>代码也不应该有。</h2><p>用开放的技术，创造自由的表达。<br>从每一束光到每一道曲线，所有视觉都由代码实时生成。你看到的每一个细节，都可以继续被改写。</p><div class="stack-tags"><a href="https://github.com/mrdoob/three.js" target="_blank" rel="noopener noreferrer">Three.js ↗</a><span>WebGL</span><span>Canvas 2D</span><span>MIT License</span></div><a class="text-link" href="./assets/orbit-lab-source.zip" download="orbit-lab-source.zip">拿走代码，创造你的版本 <span>↗</span></a></div>
+        <div class="code-window reveal"><div class="code-window-top"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span class="mono" id="code-filename">sculpture.js</span><button id="copy-code" aria-label="复制当前示例代码">复制代码 <span>⧉</span></button></div><div class="code-tabs" role="tablist" aria-label="示例代码"><button id="tab-shape" role="tab" aria-controls="code-panel" aria-selected="true" tabindex="0" data-code="shape">01 / 形态</button><button id="tab-motion" role="tab" aria-controls="code-panel" aria-selected="false" tabindex="-1" data-code="motion">02 / 律动</button><button id="tab-publish" role="tab" aria-controls="code-panel" aria-selected="false" tabindex="-1" data-code="publish">03 / 发布</button></div><div id="code-panel" role="tabpanel" aria-labelledby="tab-shape" tabindex="0"><pre><code id="code-content"></code></pre></div><div class="code-bottom mono"><span><i class="status-dot"></i> AN IDEA, MADE REAL.</span><span id="code-language">JAVASCRIPT</span></div></div>
+      </div>
+    </section>
+    <section class="outro section-wrap" aria-labelledby="outro-title"><div class="outro-top reveal"><span class="eyebrow mono">THE NEXT EXPERIMENT IS YOURS.</span><span class="outro-spark" aria-hidden="true">✳</span></div><h2 class="reveal" id="outro-title">Stay curious.<br><span>Make something</span> <em>weird.</em></h2><div class="outro-bottom reveal"><p>保持好奇。下一个惊艳的作品，从你开始。</p><a class="button button-dark magnetic" href="./assets/orbit-lab-source.zip" download="orbit-lab-source.zip"><span>下载完整源码</span><span class="button-icon">↓</span></a></div></section>
+  </main>
+  <footer class="footer"><a class="brand" href="#" aria-label="返回 ORBIT LAB 顶部"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 0 19.7 12.3 32 16 19.7 19.7 16 32 12.3 19.7 0 16 12.3 12.3Z" fill="currentColor"/></svg><span>ORBIT<span class="brand-light">LAB</span></span></a><p class="mono">© 2026 ORBIT LAB · AN OPEN-SOURCE EXPERIMENT</p><a href="#" class="back-top">回到顶部 <span>↑</span></a></footer>
+  <dialog id="project-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span class="mono" id="dialog-category">GENERATIVE LANDSCAPE</span><button id="close-project" class="icon-button" aria-label="关闭作品预览">✕</button></div><div class="dialog-art"><canvas id="dialog-canvas" data-art="terrain" aria-hidden="true"></canvas></div><div class="dialog-bottom"><div><h2 id="dialog-title">地形的呼吸</h2><p id="dialog-description"></p></div><button class="dialog-pause" id="dialog-pause" aria-pressed="false">暂停动态 Ⅱ</button></div><p class="dialog-tip mono">GENERATED WITH CODE · 按 ESC 返回展廊</p></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript-note">开启 JavaScript 即可体验实时三维雕塑与动态作品。网站内容及源码下载仍可使用。</div></noscript>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
